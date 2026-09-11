@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Something For You</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    font-family: Georgia, "Times New Roman", serif;
+    background:#080710;
+    color:#eee7f2;
+    overflow:hidden;
+}
+
+/* ---------------- BACKGROUND ---------------- */
+
+.screen{
+    width:100%;
+    height:100vh;
+    min-height:100vh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:25px;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 50% 40%, rgba(92,65,110,.18), transparent 30%),
+        radial-gradient(circle at 10% 20%, rgba(160,120,180,.08), transparent 20%),
+        linear-gradient(145deg,#07060c,#100d18,#08070e);
+}
+
+.screen.active{
+    display:flex;
+    animation:fadeIn .9s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:scale(1.02);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.content{
+    width:100%;
+    max-width:760px;
+    position:relative;
+    z-index:5;
+}
+
+/* ---------------- STARS ---------------- */
+
+.star{
+    position:absolute;
+    color:#fff;
+    opacity:.35;
+    font-size:12px;
+    animation:twinkle 3s infinite ease-in-out;
+}
+
+.s1{top:12%;left:12%}
+.s2{top:25%;right:15%;animation-delay:1s}
+.s3{bottom:20%;left:18%;animation-delay:2s}
+.s4{bottom:12%;right:12%;animation-delay:.5s}
+.s5{top:45%;left:7%;animation-delay:1.5s}
+.s6{top:55%;right:7%;animation-delay:2.5s}
+
+@keyframes twinkle{
+    0%,100%{opacity:.15;transform:scale(.8)}
+    50%{opacity:.8;transform:scale(1.4)}
+}
+
+/* ---------------- TEXT ---------------- */
+
+.label{
+    font-size:13px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#aaa0b5;
+    margin-bottom:28px;
+}
+
+h1{
+    font-size:clamp(42px,10vw,76px);
+    font-weight:normal;
+    color:#f4edf7;
+    line-height:1.15;
+}
+
+h2{
+    font-size:clamp(30px,7vw,52px);
+    font-weight:normal;
+    color:#eee4f1;
+    line-height:1.25;
+}
+
+p{
+    font-size:18px;
+    line-height:1.8;
+    color:#d4ccd8;
+}
+
+.line{
+    width:90px;
+    height:1px;
+    background:#9c8da5;
+    margin:28px auto;
+}
+
+/* ---------------- BUTTON ---------------- */
+
+button{
+    margin-top:32px;
+    padding:14px 32px;
+
+    background:rgba(255,255,255,.025);
+    border:1px solid #76677f;
+    border-radius:40px;
+
+    color:#eee7f2;
+    font-family:Georgia,serif;
+    font-size:16px;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:rgba(255,255,255,.08);
+    transform:translateY(-3px);
+}
+
+/* ---------------- HEART ---------------- */
+
+.heart{
+    position:absolute;
+    color:#b9a4c2;
+    font-size:20px;
+    opacity:.4;
+    animation:float 7s infinite ease-in-out;
+}
+
+.h1{left:10%;top:20%}
+.h2{right:12%;top:25%;animation-delay:2s}
+.h3{left:15%;bottom:18%;animation-delay:3s}
+.h4{right:15%;bottom:20%;animation-delay:1s}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-25px);
+    }
+}
+
+/* ---------------- TIMELINE ---------------- */
+
+.timeline{
+    margin:30px auto;
+    max-width:580px;
+    text-align:left;
+    border-left:1px solid #716479;
+    padding-left:25px;
+}
+
+.timeline-item{
+    margin-bottom:28px;
+}
+
+.year{
+    font-size:14px;
+    letter-spacing:4px;
+    color:#a99aae;
+    margin-bottom:8px;
+}
+
+.timeline-item p{
+    font-size:17px;
+}
+
+/* ---------------- QUOTE ---------------- */
+
+.quote{
+    max-width:600px;
+    margin:auto;
+    padding:25px;
+    border-top:1px solid #4d4352;
+    border-bottom:1px solid #4d4352;
+}
+
+.quote p{
+    font-style:italic;
+    font-size:21px;
+}
+
+/* ---------------- LETTER ---------------- */
+
+.letter{
+    max-height:70vh;
+    overflow-y:auto;
+    padding:32px 25px;
+
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+
+    text-align:left;
+}
+
+.letter::-webkit-scrollbar{
+    width:3px;
+}
+
+.letter::-webkit-scrollbar-thumb{
+    background:#716479;
+}
+
+.letter p{
+    font-size:17px;
+    line-height:1.9;
+    margin-bottom:20px;
+}
+
+.signature{
+    text-align:right;
+    font-style:italic;
+}
+
+/* ---------------- ENVELOPE ---------------- */
+
+.envelope{
+    width:230px;
+    height:155px;
+    margin:35px auto;
+    position:relative;
+
+    background:#17121c;
+    border:1px solid #76677f;
+    border-radius:8px;
+
+    box-shadow:0 15px 50px rgba(0,0,0,.5);
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+
+    border-left:114px solid transparent;
+    border-right:114px solid transparent;
+    border-top:78px solid #2a2130;
+}
+
+.seal{
+    position:absolute;
+    top:58px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:42px;
+    height:42px;
+    border-radius:50%;
+
+    background:#8b718f;
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+}
+
+/* ---------------- FINAL ---------------- */
+
+.final-heart{
+    font-size:55px;
+    margin-bottom:20px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media(max-width:500px){
+
+    p{
+        font-size:16px;
+    }
+
+    .letter p{
+        font-size:16px;
+    }
+
+    .quote p{
+        font-size:18px;
+    }
+
+    button{
+        font-size:15px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 1 -->
+<!-- ================================================= -->
+
+<section class="screen active" id="screen1">
+
+<span class="star s1">✦</span>
+<span class="star s2">✧</span>
+<span class="star s3">✦</span>
+<span class="star s4">✧</span>
+<span class="star s5">✦</span>
+<span class="star s6">✧</span>
+
+<div class="heart h1">♡</div>
+<div class="heart h2">♡</div>
+
+<div class="content">
+
+<div class="label">A little message</div>
+
+<h1>Dear Sir Abrar</h1>
+
+<div class="line"></div>
+
+<p>
+Before you leave this page,<br>
+there's something I want you to know.
+</p>
+
+<button onclick="next(2)">
+Tap to continue
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 2 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen2">
+
+<div class="content">
+
+<div class="label">But first...</div>
+
+<h2>This isn't just<br>a Teachers' Day wish.</h2>
+
+<div class="line"></div>
+
+<p>
+It's a little story.<br>
+A story that started much earlier<br>
+than you probably know.
+</p>
+
+<button onclick="next(3)">
+There's a story? →
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 3 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen3">
+
+<div class="content">
+
+<div class="label">One little question</div>
+
+<h2>
+Do you remember<br>
+the year 2022?
+</h2>
+
+<div class="line"></div>
+
+<p>
+Because I do.
+<br><br>
+And I remember one very ordinary
+moment that I never knew would
+become the beginning of something
+so meaningful to me.
+</p>
+
+<button onclick="next(4)">
+Tell me more →
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 4 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen4">
+
+<div class="content">
+
+<div class="label">2022</div>
+
+<h2>The First Time I Saw You</h2>
+
+<div class="line"></div>
+
+<p>
+It was just a random day.
+<br><br>
+I saw you in the corridor.
+</p>
+
+<p style="margin-top:20px;">
+I didn't know your name.<br>
+I didn't know anything about you.
+</p>
+
+<p style="margin-top:20px;">
+But somehow...
+you caught my attention.
+</p>
+
+<button onclick="next(5)">
+And then? →
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 5 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen5">
+
+<div class="content">
+
+<div class="label">A strange little feeling</div>
+
+<h2>
+You were just<br>
+someone I noticed.
+</h2>
+
+<div class="line"></div>
+
+<p>
+At that time, I didn't call it a crush.
+<br><br>
+I didn't even understand why
+I had noticed you.
+</p>
+
+<p style="margin-top:20px;">
+I simply thought...
+<br>
+"There's something about him."
+</p>
+
+<button onclick="next(6)">
+Then came 2023 →
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 6 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen6">
+
+<div class="content">
+
+<div class="label">2023</div>
+
+<h2>
+And then you came<br>
+to teach us.
+</h2>
+
+<div class="line"></div>
+
+<p>
+That was when everything slowly
+started changing.
+</p>
+
+<p style="margin-top:20px;">
+Suddenly, I started noticing
+the little things.
+</p>
+
+<button onclick="next(7)">
+The little things? →
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 7 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen7">
+
+<div class="content">
+
+<div class="label">Without realizing it</div>
+
+<h2>
+I started noticing<br>
+everything.
+</h2>
+
+<div class="line"></div>
+
+<p>
+The way you spoke.<br>
+The way you taught.<br>
+Your expressions.<br>
+Your little habits.<br>
+Your presence.
+</p>
+
+<p style="margin-top:20px;">
+And somehow...
+your presence started mattering to me.
+</p>
+
+<button onclick="next(8)">
+Someone noticed… 👀
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 8 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen8">
+
+<div class="content">
+
+<div class="label">My friend noticed first</div>
+
+<h2>
+I thought I was hiding it.
+</h2>
+
+<div class="line"></div>
+
+<p>
+Apparently...
+I wasn't.
+</p>
+
+<div class="quote" style="margin-top:25px;">
+
+<p>
+“Aasia, tu pagal hogayi he.”
+</p>
+
+</div>
+
+<p style="margin-top:25px;">
+That was the moment I realized
+someone else had noticed
+what I was trying not to admit.
+</p>
+
+<button onclick="next(9)">
+And then she said something…
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 9 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen9">
+
+<div class="content">
+
+<div class="label">The confession before my confession</div>
+
+<h2>
+Then my friend said...
+</h2>
+
+<div class="line"></div>
+
+<div class="quote">
+
+<p>
+“Mujhe Sir pe crush hogaya he.”
+</p>
+
+</div>
+
+<p style="margin-top:30px;">
+And somehow...
+that sentence made me look
+at my own feelings differently.
+</p>
+
+<button onclick="next(10)">
+Because mine was different…
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 10 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen10">
+
+<div class="content">
+
+<div class="label">Somewhere along the way</div>
+
+<h2>
+It stopped being<br>
+just a crush.
+</h2>
+
+<div class="line"></div>
+
+<p>
+A crush is something you can
+usually laugh about.
+</p>
+
+<p style="margin-top:20px;">
+But this...
+slowly became deeper.
+</p>
+
+<p style="margin-top:20px;">
+The more I noticed you,
+the more your presence mattered.
+</p>
+
+<button onclick="next(11)">
+And then I realized…
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 11 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen11">
+
+<div class="content">
+
+<div class="label">The realization</div>
+
+<h2>
+It had become<br>
+something real to me.
+</h2>
+
+<div class="line"></div>
+
+<p>
+Somewhere between
+the little conversations,
+the classes,
+the moments,
+and simply seeing you...
+</p>
+
+<p style="margin-top:20px;">
+my crush had quietly
+turned into deep,
+one-sided love.
+</p>
+
+<button onclick="next(12)">
+But there was something I understood…
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 12 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen12">
+
+<div class="content">
+
+<div class="label">The hardest part</div>
+
+<h2>
+Not every feeling<br>
+needs an ending.
+</h2>
+
+<div class="line"></div>
+
+<p>
+Sometimes a feeling simply
+exists inside you.
+</p>
+
+<p style="margin-top:20px;">
+You don't choose it.
+You don't plan it.
+It just happens.
+</p>
+
+<p style="margin-top:20px;">
+And sometimes...
+you learn to carry it quietly.
+</p>
+
+<button onclick="next(13)">
+There is something I never said…
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 13 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen13">
+
+<div class="content">
+
+<div class="label">Unsaid things</div>
+
+<h2>
+There were so many<br>
+things I never said.
+</h2>
+
+<div class="line"></div>
+
+<p>
+How much your presence mattered.
+<br>
+How many little things I remembered.
+<br>
+How often a simple moment
+stayed in my mind.
+</p>
+
+<p style="margin-top:25px;">
+And how something that started
+so randomly in a corridor
+became a feeling I carried
+for years.
+</p>
+
+<button onclick="next(14)">
+Open the letter 💌
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 14 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen14">
+
+<div class="content">
+
+<div class="label">A letter I couldn't say aloud</div>
+
+<div class="letter">
+
+<h2 style="text-align:center;">
+Dear Sir Abrar,
+</h2>
+
+<div class="line"></div>
+
+<p>
+I don't know if you ever realized
+how this story started for me.
+</p>
+
+<p>
+In 2022, I saw you randomly in a
+corridor. I didn't even know your name.
+You were simply someone who caught
+my attention for reasons I couldn't explain.
+</p>
+
+<p>
+Then in 2023, when you came to teach us,
+something slowly changed.
+I started noticing the little things —
+the way you spoke, the way you taught,
+your expressions, your presence.
+</p>
+
+<p>
+And before I even realized it,
+your presence had started to matter to me.
+</p>
+
+<p>
+One of my friends noticed it before I
+could admit it myself.
+She literally looked at me and said,
+<strong>“Aasia, tu pagal hogayi he.”</strong>
+</p>
+
+<p>
+Later, she told me that she had a crush
+on you too. And maybe that's when I
+started understanding that what I was
+feeling wasn't just a random attraction.
+</p>
+
+<p>
+Because mine slowly became deeper.
+The crush quietly turned into
+one-sided love.
+</p>
+
+<p>
+I never expected anything from you
+when these feelings started.
+I simply found myself caring,
+noticing, remembering and feeling
+happy whenever your presence was around.
+</p>
+
+<p>
+Maybe you will never know the complete
+story behind these feelings.
+Maybe you don't need to.
+</p>
+
+<p>
+I just wanted you to know that somewhere
+along the way, you became a very
+meaningful part of a chapter of my life.
+</p>
+
+<p>
+And whatever life brings next,
+I will always be grateful for the lessons,
+the memories and the person I became
+while carrying this feeling.
+</p>
+
+<p>
+Thank you for being someone
+I could look up to.
+Thank you for the memories.
+And thank you for unknowingly
+becoming a beautiful part of my story.
+</p>
+
+<p class="signature">
+With respect,<br>
+Aasia
+</p>
+
+</div>
+
+<button onclick="next(15)">
+There's still one more thing…
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 15 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen15">
+
+<div class="content">
+
+<div class="label">One more surprise</div>
+
+<h2>
+If you ever wondered...
+</h2>
+
+<div class="line"></div>
+
+<p>
+Why did your presence matter so much?
+</p>
+
+<p style="margin-top:25px;">
+Maybe there was never one big reason.
+</p>
+
+<p style="margin-top:20px;">
+It was the collection of
+hundreds of tiny moments.
+</p>
+
+<button onclick="next(16)">
+Show me →
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 16 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen16">
+
+<div class="content">
+
+<div class="label">It was the little things</div>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="year">2022</div>
+
+<p>
+A random corridor.
+A person whose name I didn't even know.
+And somehow, I noticed you.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="year">2023</div>
+
+<p>
+You became our teacher.
+And suddenly I started noticing
+all those little things.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="year">SOMEWHERE ALONG THE WAY</div>
+
+<p>
+A simple crush became feelings.
+And feelings became something much deeper.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="year">TODAY</div>
+
+<p>
+I can finally look back and understand
+how quietly this whole story began.
+</p>
+
+</div>
+
+</div>
+
+<button onclick="next(17)">
+One final thought →
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 17 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen17">
+
+<div class="content">
+
+<div class="label">Maybe this is what I wanted you to know</div>
+
+<div class="quote">
+
+<p>
+“Some people enter our lives
+without knowing the place
+they will eventually hold in our hearts.”
+</p>
+
+</div>
+
+<div class="line"></div>
+
+<p>
+You were never just a name
+in a classroom for me.
+</p>
+
+<p style="margin-top:20px;">
+You became a memory.
+A feeling.
+A chapter.
+</p>
+
+<button onclick="next(18)">
+And finally…
+</button>
+
+</div>
+</section>
+
+
+<!-- ================================================= -->
+<!-- SCREEN 18 -->
+<!-- ================================================= -->
+
+<section class="screen" id="screen18">
+
+<div class="content">
+
+<div class="final-heart">
+♡
+</div>
+
+<div class="label">Teachers' Day</div>
+
+<h1>
+Thank You,<br>
+Sir Abrar.
+</h1>
+
+<div class="line"></div>
+
+<p>
+For teaching more than lessons.
+<br><br>
+For becoming a memory
+I will always carry with gratitude.
+</p>
+
+<p style="margin-top:25px;">
+Happy Teachers' Day. 🤍
+</p>
+
+<p style="margin-top:30px;font-size:14px;color:#9e94a4;">
+Some stories are never meant to be told loudly.
+<br>
+Some are simply meant to be remembered.
+</p>
+
+</div>
+</section>
+
+
+<script>
+
+function next(number){
+
+    document.querySelectorAll(".screen").forEach(function(screen){
+        screen.classList.remove("active");
+    });
+
+    document.getElementById("screen" + number)
+        .classList.add("active");
+
+}
+
+</script>
+
+</body>
+</html>
